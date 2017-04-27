@@ -1,0 +1,2 @@
+E:\Study & Learn\Programming\TOP\My solution & projects\projects\Neural Networks\.Net program to open .PGM files\WindowsFormsApplication1\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.exe
+E:\Study & Learn\Programming\TOP\My solution & projects\projects\Neural Networks\.Net program to open .PGM files\WindowsFormsApplication1\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.pdb
