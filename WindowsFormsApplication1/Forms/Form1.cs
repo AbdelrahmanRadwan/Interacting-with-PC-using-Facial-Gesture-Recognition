@@ -12,19 +12,17 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         Data_Loader Loader;
-        Bitmap BrowsedImage;//The Brosed Image through Browse Button
+        string ShufflingAlgorithm; // The used algorithm in shuffling the training data set
+        Bitmap BrowsedImage;//The Browsed Image through Browse Button
         
         public Form1()
         {
             InitializeComponent();
-            MinimizeBox = false;
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Loader = new Data_Loader();
-
         }
 
         private void BrowseButton_Clicked(object sender, EventArgs e)
@@ -48,5 +46,11 @@ namespace WindowsFormsApplication1
             }
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Loader.RunTheDataLoader(this);
+        }
+
     }
 }
