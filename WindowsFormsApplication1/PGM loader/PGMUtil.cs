@@ -77,11 +77,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public static void SaveAsBitmap(string src, string dest)
-        {
-            ToBitmap(src).Save(dest, ImageFormat.Bmp);
-        }
-
         private static int ReadNumber(BinaryReader reader, StringBuilder sb)
         {
             char c = '\0';
