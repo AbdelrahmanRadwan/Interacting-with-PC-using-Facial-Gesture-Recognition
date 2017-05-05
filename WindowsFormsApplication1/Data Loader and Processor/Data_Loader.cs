@@ -16,8 +16,12 @@ namespace WindowsFormsApplication1
         string[] FileLines; //[Temp variable] To load the content of the Json object to memory.
         string[] Labels = {"Closing Eyes", "Looking Down", "Looking Front", "Looking Left" };
         string[] Tokens; // [Temp variable]To hold the X and Y coordinated of the records.
+        double[] FeaturesMean;
+        double[] FeaturesMaximum;
         string Path; // [Temp variable] Generic variable to hold the cumulative path
         string ShufflingAlgorithm; // Variable to hold the name of the suffling algorithm we wanna use.
+        string NormalizationAlgorithm; // Variable to hold the name of the normalization algorithm we wanna use.
+
         ////
         //Training
         ////
@@ -47,6 +51,8 @@ namespace WindowsFormsApplication1
             NumberOfClasses = 4;
             NumberOfFeatures = 19;
             ShufflingAlgorithm = "Fisher Yates Shuffle";
+            FeaturesMean = new double[NumberOfFeatures];
+            FeaturesMaximum = new double[NumberOfFeatures];
             ////
             //Training
             ////
@@ -179,6 +185,7 @@ namespace WindowsFormsApplication1
             ////
             // Normalize
             ////
+            Standardization();
 
         }
         #region Shuffling Algorithms
@@ -207,6 +214,23 @@ namespace WindowsFormsApplication1
         }
         #endregion
         #region Normalization Algorithms
+        private void Standardization()
+        {
+            CalculateMean();
+            CalculateMaximum();
+            ////
+            //Normalize the training samples
+            ////
+            for (int i = 0; i < NumberOfTrainingSamples; i++)
+                for (int j = 0; j < NumberOfFeatures; j++)
+                    TrainingFeatures[i, j] = (TrainingFeatures[i, j] - FeaturesMean[j]) / FeaturesMaximum[j];
+            ////
+            //Normalize the testing samples
+            ////
+            for (int i = 0; i < NumberOfTestingSamples; i++)
+                for (int j = 0; j < NumberOfFeatures; j++)
+                    TestingFeatures[i, j] = (TestingFeatures[i, j] - FeaturesMean[j]) / FeaturesMaximum[j];
+        }
         #endregion
         #endregion
 
@@ -267,6 +291,28 @@ namespace WindowsFormsApplication1
             double Distance = 0;
             Distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
             return Distance;
+        }
+        private void CalculateMean()
+        {
+            for(int i=0;i<NumberOfFeatures;i++)
+            {
+                double sum = 0;
+                for (int j = 0; j < NumberOfTrainingSamples; j++)
+                    sum += TrainingFeatures[j, i];
+                for (int j = 0; j < NumberOfTestingSamples; j++)
+                    sum += TestingFeatures[j, i];
+                FeaturesMean[i] = sum / (NumberOfTrainingSamples+ NumberOfTestingSamples);
+            }
+        }
+        private void CalculateMaximum()
+        {
+            for (int i = 0; i < NumberOfFeatures; i++)
+            {
+                for (int j = 0; j < NumberOfTrainingSamples; j++)
+                    FeaturesMaximum[i] = Math.Max(FeaturesMaximum[i], TrainingFeatures[j, i]);
+                for (int j = 0; j < NumberOfTestingSamples; j++)
+                    FeaturesMaximum[i] = Math.Max(FeaturesMaximum[i], TestingFeatures[j, i]);
+            }
         }
 
         #endregion

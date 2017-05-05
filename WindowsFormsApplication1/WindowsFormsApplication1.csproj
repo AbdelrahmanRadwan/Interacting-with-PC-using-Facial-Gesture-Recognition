@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MixedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -47,7 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions Controller\PC_Controller.cs" />
     <Compile Include="Data Loader and Processor\Data_Loader.cs" />
+    <Compile Include="Math Operations\MathematicalOperations.cs" />
+    <Compile Include="Output Presenter\Output.cs" />
     <Compile Include="PGM loader\PGMUtil.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
@@ -57,8 +61,10 @@
     </Compile>
     <Compile Include="Entry Point\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="The Model Package\Testing\Tester.cs" />
-    <Compile Include="The Model Package\Training\Trainer.cs" />
+    <Compile Include="The Model Package\Testing\MultilayerPerceptronTester.cs" />
+    <Compile Include="The Model Package\Testing\RadialBasisTester.cs" />
+    <Compile Include="The Model Package\Training\MultilayerPerceptronModel.cs" />
+    <Compile Include="The Model Package\Training\RadialBasisModel.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

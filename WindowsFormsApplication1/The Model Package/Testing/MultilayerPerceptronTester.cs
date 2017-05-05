@@ -5,7 +5,8 @@ using System.Text;
 
 namespace WindowsFormsApplication1
 {
-    class Tester
+    class MultilayerPerceptronTester
     {
+
     }
 }

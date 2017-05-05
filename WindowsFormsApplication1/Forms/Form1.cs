@@ -18,11 +18,13 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
+            radioButton1.Checked = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Loader = new Data_Loader();
+
         }
 
         private void BrowseButton_Clicked(object sender, EventArgs e)
@@ -49,8 +51,15 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (radioButton1.Checked) ShufflingAlgorithm = "Knuth Shuffle Algorithm";
+            else ShufflingAlgorithm = "Fisher Yates Shuffle Algorithm";
+            MessageBox.Show(ShufflingAlgorithm);
             Loader.RunTheDataLoader(this);
         }
+
+
+
+
 
     }
 }
