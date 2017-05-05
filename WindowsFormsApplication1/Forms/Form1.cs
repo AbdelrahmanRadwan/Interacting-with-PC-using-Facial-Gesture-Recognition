@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        Data_Loader Loader;
+        public Data_Loader Loader;
         string ShufflingAlgorithm; // The used algorithm in shuffling the training data set
         Bitmap BrowsedImage;//The Browsed Image through Browse Button
         

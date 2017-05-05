@@ -28,18 +28,18 @@ namespace WindowsFormsApplication1
         string PathOfTrainingMetaData;
         int NumberOfTrainingSamples;
         int NumberOfTrainingSamplesPerClass;
-        double[,] TrainingFeatures;
+        public double[,] TrainingFeatures;
         double[, ,] TrainingMetaData;
-        string[] TrainingLabels;
+        public string[] TrainingLabels;
         ////
         //Training
         ////
         string PathOfTestingMetaData;
         int NumberOfTestingSamples;
         int NumberOfTestingSamplesPerClass;
-        double[,] TestingFeatures;
+        public double[,] TestingFeatures;
         double[, ,] TestingMetaData;
-        string[] TestingLabels;
+        public string[] TestingLabels;
         ////////////////////////////////////////////////////
         ////////////////////////////////////////////////////
         #region Class Constructor
@@ -299,8 +299,9 @@ namespace WindowsFormsApplication1
                 double sum = 0;
                 for (int j = 0; j < NumberOfTrainingSamples; j++)
                     sum += TrainingFeatures[j, i];
-                for (int j = 0; j < NumberOfTestingSamples; j++)
-                    sum += TestingFeatures[j, i];
+                // Include the testing data in calculating the mean.
+                /*for (int j = 0; j < NumberOfTestingSamples; j++)
+                    sum += TestingFeatures[j, i];*/
                 FeaturesMean[i] = sum / (NumberOfTrainingSamples+ NumberOfTestingSamples);
             }
         }
@@ -310,8 +311,9 @@ namespace WindowsFormsApplication1
             {
                 for (int j = 0; j < NumberOfTrainingSamples; j++)
                     FeaturesMaximum[i] = Math.Max(FeaturesMaximum[i], TrainingFeatures[j, i]);
-                for (int j = 0; j < NumberOfTestingSamples; j++)
-                    FeaturesMaximum[i] = Math.Max(FeaturesMaximum[i], TestingFeatures[j, i]);
+                //Include the maximization of the testing also
+                /*for (int j = 0; j < NumberOfTestingSamples; j++)
+                    FeaturesMaximum[i] = Math.Max(FeaturesMaximum[i], TestingFeatures[j, i]);*/
             }
         }
 
